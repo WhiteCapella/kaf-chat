@@ -43,11 +43,9 @@ def mode_send(my_topic):
 
     producer = KafkaProducer(
         topic=my_topic,
-        bootstrap_servers=bootstrap_servers,
-        value_serializer=lambda x: json.dumps(x).encode('utf-8')
+        bootstrap_servers='localhost:9092',
+        value_serializer=lambda x:json.dumps(x).encode('utf-8'),
     )
-
-      
     while is_producer:
         message = input(">> ")
         producer.send(topic, value=message)
