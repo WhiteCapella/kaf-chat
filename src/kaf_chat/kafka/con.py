@@ -4,10 +4,12 @@ import time
 import json
 
 def receive_message():
-    topic = input("Enter Topic : ")
+    group_id = input("Enter Chatroom : ")
+    topic = input("Enter Nickname : ")
     receiver = KafkaConsumer(
-            topic,
             bootstrap_servers='localhost:9092',
+            group_id = group_id,
+            auto_offset_reset='earliest',
             )
     start_time = time.time()  # 시작 시간 기록
     timeout_seconds = 60  # 타임아웃 시간 (초)

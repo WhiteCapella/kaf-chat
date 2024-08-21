@@ -3,10 +3,13 @@ from kafka import KafkaProducer
 import time
 import json
 def send_message():
-    topic = input("Enter Topic : ")
+    group_id = input("Enter Chatroom : ")
+    topic = input("Enter Nickname : ")
     producer = KafkaProducer (
+        topic = topic,
         bootstrap_servers=['localhost:9092'],
-        value_serializer=lambda x:json.dumps(x).encode('utf-8')
+        group_id=group_id,
+        value_serializer=lambda x:json.dumps(x).encode('utf-8'),
         )
 
     start = time.time()
