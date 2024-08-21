@@ -3,8 +3,7 @@ name = "kaf-chat"
 version = "0.2.0"
 description = "Kafka-Chat"
 authors = [
-    {name = "whitecapella", email = "02@naver.com"},
-    {name = "WhiteCapella", email = "whitecapella@naver.com"},
+    {name = "whitecapella", email = "whitecapella@naver.com"},
 ]
 dependencies = [
     "kafka-python>=2.0.2",
@@ -29,4 +28,5 @@ pythonpath = "src"
 
 [project.scripts]
 kchat-ping = 'kaf_chat.cli:ping'
+kchat-send = 'kafka.pro:send_message'
 
