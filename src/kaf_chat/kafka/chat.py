@@ -7,23 +7,6 @@ import threading
 isproducer = False
 
 
-def make_chat():
-    if __name__ == "__main__":
-        my_topic = input("Enter Your Nickname : ")
-        partner_topic = input("Enter Partner Nickname : ")
-
-        consumer_thread = threading.Thread(target=mode_receive, args=(partner_topic))
-        producer_thread = threading.Thread(target=mode_send, args=(my_topic))
-        input_thread = threading.Thread(target=input_check)
-
-        consumer_thread.start()
-        producer_thread.start()
-        input_thread.start()
-
-        consumer_thread.join()
-        producer_thread.join()
-        input_thread.join()
-
 def mode_receive(partner_topic):
     global is_producer
 
@@ -59,3 +42,18 @@ def input_check():
         input()  # Enter 키 입력 대기
         is_producer = not is_producer
 
+if __name__ == "__main__":
+    my_topic = input("Enter Your Nickname : ")
+    partner_topic = input("Enter Partner Nickname : ")
+
+    consumer_thread = threading.Thread(target=mode_receive, args=(partner_topic))
+    producer_thread = threading.Thread(target=mode_send, args=(my_topic))
+    input_thread = threading.Thread(target=input_check)
+
+    consumer_thread.start()
+    producer_thread.start()
+    input_thread.start()
+
+    consumer_thread.join()
+    producer_thread.join()
+    input_thread.join()
