@@ -25,5 +25,5 @@ test = [
 pythonpath = "src"
 
 [project.scripts]
-kaf-chat-ping = 'kaf-chat.cli:ping'
+kchat-ping = 'kaf_chat.cli:ping'
 
