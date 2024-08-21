@@ -31,3 +31,4 @@ pythonpath = "src"
 kchat-ping = 'kaf_chat.cli:ping'
 kchat-s = 'kaf_chat.kafka.pro:send_message'
 kchat-r = 'kaf_chat.kafka.con:receive_message'
+kchat = 'kaf_chat.kafka.chat:make_chat'
