@@ -1,7 +1,7 @@
 [project]
 name = "kaf-chat"
 version = "0.1.0"
-description = "Default template for PDM package"
+description = "Kafka-Chat"
 authors = [
     {name = "whitecapella", email = "02@naver.com"},
     {name = "WhiteCapella", email = "whitecapella@naver.com"},
@@ -20,3 +20,10 @@ pytest = []
 test = [
     "pytest>=8.3.2",
 ]
+
+[tool.pytest.ini_optorns]
+pythonpath = "src"
+
+[project.scripts]
+kchat-ping = 'kchat.cli:ping'
+
