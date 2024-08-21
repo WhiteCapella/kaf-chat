@@ -1,12 +1,14 @@
 [project]
 name = "kaf-chat"
-version = "0.1.0"
+version = "0.2.1"
 description = "Kafka-Chat"
 authors = [
-    {name = "whitecapella", email = "02@naver.com"},
-    {name = "WhiteCapella", email = "whitecapella@naver.com"},
+    {name = "whitecapella", email = "whitecapella@naver.com"},
 ]
-dependencies = []
+dependencies = [
+    "kafka-python>=2.0.2",
+    "keyboard>=0.13.5",
+]
 requires-python = ">=3.8"
 readme = "README.md"
 license = {text = "MIT"}
@@ -26,4 +28,5 @@ pythonpath = "src"
 
 [project.scripts]
 kchat-ping = 'kaf_chat.cli:ping'
-
+kchat-s = 'kaf_chat.kafka.pro:send_message'
+kchat-r = 'kaf_chat.kafka.con:receive_message'
