@@ -28,5 +28,5 @@ pythonpath = "src"
 
 [project.scripts]
 kchat-ping = 'kaf_chat.cli:ping'
-kchat-send = 'kafka.pro:send_message'
-
+kchat-s = 'kaf_chat.kafka.pro:send_message'
+kchat-r = 'kaf_chat.kafka.con:receive_message'

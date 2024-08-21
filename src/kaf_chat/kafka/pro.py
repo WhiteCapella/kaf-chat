@@ -3,6 +3,7 @@ from kafka import KafkaProducer
 import time
 import json
 def send_message():
+    topic = input("Enter Topic : ")
     producer = KafkaProducer (
         bootstrap_servers=['localhost:9092'],
         value_serializer=lambda x:json.dumps(x).encode('utf-8')
@@ -14,7 +15,7 @@ def send_message():
         # if문을 통해서 시도해보았으나 keyboard 모듈 미인식 문제로 대기
 
         message = input(">> ")  # 사용자 입력 받기
-        producer.send('topic1', value={"topic1": message})  # Kafka 토픽에 전송
+        producer.send(topic, value={topic >> message})  # Kafka 토픽에 전송
         producer.flush()  # 메시지 전송 완료
 
 
