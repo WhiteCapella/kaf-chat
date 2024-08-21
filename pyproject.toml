@@ -14,3 +14,9 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+
+[tool.pdm.dev-dependencies]
+pytest = []
+test = [
+    "pytest>=8.3.2",
+]
