@@ -4,17 +4,18 @@ from json import loads
 import time
 import threading
 
-isproducer = False
-
+is_producer = False
+server_add="172.17.0.1:9092"
 
 def mode_receive(partner_topic):
     global is_producer
+    global server_add
 
     consumer = KafkaConsumer(
-        topic=partner_topic,
-        bootstrap_servers=bootstrap_servers,
+            bootstrap_servers=server_add,
         value_deserializer=lambda x: json.loads(x.decode('utf-8'))
     )
+    consumer.subscribe([partner_topic])
 
     for message in consumer:
         print(f"Received message: {message.value}")
@@ -23,15 +24,15 @@ def mode_receive(partner_topic):
 
 def mode_send(my_topic):
     global is_producer
-
+    global server_add
+    
     producer = KafkaProducer(
-        topic=my_topic,
-        bootstrap_servers='localhost:9092',
+        bootstrap_servers=server_add,
         value_serializer=lambda x:json.dumps(x).encode('utf-8'),
     )
     while is_producer:
         message = input(">> ")
-        producer.send(topic, value=message)
+        producer.send(my_topic, value=message)
         producer.flush()
 
 
@@ -42,12 +43,12 @@ def input_check():
         input()  # Enter 키 입력 대기
         is_producer = not is_producer
 
-if __name__ == "__main__":
-    my_topic = input("Enter Your Nickname : ")
-    partner_topic = input("Enter Partner Nickname : ")
+def make_chat():
+    arg1 = input("Enter Your Nickname : ")
+    arg2 = input("Enter Partner Nickname : ")
 
-    consumer_thread = threading.Thread(target=mode_receive, args=(partner_topic))
-    producer_thread = threading.Thread(target=mode_send, args=(my_topic))
+    consumer_thread = threading.Thread(target=mode_receive, args=(arg2,))
+    producer_thread = threading.Thread(target=mode_send, args=(arg1,))
     input_thread = threading.Thread(target=input_check)
 
     consumer_thread.start()
@@ -57,3 +58,4 @@ if __name__ == "__main__":
     consumer_thread.join()
     producer_thread.join()
     input_thread.join()
+
