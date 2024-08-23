@@ -15,7 +15,7 @@ def send_message():
         message = input(">> ")  # 사용자 입력 받기
         if message == "exit":
             break
-        m_message = f'{nickname} >> {message}'
+        m_message = {'nickname': nickname, 'message': message}
         producer.send(topic, value=m_message)
         producer.flush()  # 메시지 전송 완료
 
